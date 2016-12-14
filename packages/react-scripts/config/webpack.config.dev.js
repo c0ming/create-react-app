@@ -55,9 +55,9 @@ module.exports = {
     require.resolve('./polyfills'),
     // Finally, this is your app's code:
     paths.appIndexJs
-    // We include the app code last so that if there is a runtime error during
-    // initialization, it doesn't blow up the WebpackDevServer client, and
-    // changing JS code would still trigger a refresh.
+  // We include the app code last so that if there is a runtime error during
+  // initialization, it doesn't blow up the WebpackDevServer client, and
+  // changing JS code would still trigger a refresh.
   ],
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
@@ -126,7 +126,7 @@ module.exports = {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
-          /\.css$/,
+          /\.(css|styl)$/,
           /\.json$/
         ],
         loader: 'url',
@@ -157,8 +157,8 @@ module.exports = {
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
       {
-        test: /\.css$/,
-        loader: 'style!css?importLoaders=1!postcss'
+        test: /\.(css|styl)$/,
+        loader: 'style!css?importLoaders=1!stylus!postcss'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
